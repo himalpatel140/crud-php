@@ -54,7 +54,8 @@ $result = $conn->query($selectQuery)->fetch_all(MYSQLI_ASSOC);
 		<button id="create">Delete</button>
 	</form>
 
-	
+
+
 </body>
 
 </html>

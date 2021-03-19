@@ -3,6 +3,7 @@
 include "db.php";
 
 $type = $_POST['type'];
+$is_api = $_POST['is_api'];
 
 if ($type=='create') {
 	$data = $_POST['data'];
@@ -23,6 +24,15 @@ if ($type=="delete") {
 	$conn->query($deleteQuery);
 }
 
-header("Location:http://localhost/crud");
+if ($type=="read") {
+	$selectQuery = "SELECT * FROM `test`";
+	$result = $conn->query($selectQuery)->fetch_all(MYSQLI_ASSOC);
+	header('Content-Type: application/json');
+	echo json_encode($result);
+}
+
+if (!$is_api) {
+	header("Location:http://localhost/crud");
+}
 
 ?>
